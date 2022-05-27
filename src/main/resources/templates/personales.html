@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:utext="#{formRegistro.title}"></title>
+    <link rel="icon" href="data:,"/>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}"/>
+    <script th:src="@{/js/funciones.js}"></script>
+</head>
+<body>
+<div th:replace="fragments/cabecera :: header"></div>
+<form id="personales" th:object="${usuario}" th:action="@{/registro/personales}" method="post">
+    <fieldset class="cuadrado">
+        <legend class="negrita" th:text="#{formPersonales.leyenda}"/>
+        <label>
+            <span class="negrita" th:text="#{formPersonales.etiqueta.nombre}"/>
+            <input type="text" name="nombre" id="nombre" th:field="*{nombre}"/>
+        </label>
+        <label>
+            <span class="negrita" th:text="#{formPersonales.etiqueta.apellidos}"/>
+            <input type="text" name="apellidos" id="apellidos" th:field="*{apellidos}"/>
+        </label>
+        <br/>
+        <label>
+            <span class="negrita" th:text="#{formPersonales.etiqueta.fechaNac}"/>
+            <input type="text" name="fechaNac" id="fechaNac" th:field="*{fechaNac}"/>
+        </label>
+        <br/>
+        <label>
+            <span class="negrita" th:text="#{formPersonales.etiqueta.genero}"/>
+            <th:block th:each="genero: ${listaGenerosOrdenada}">
+                <input type="radio" name="siglasGenero" th:id="${genero.value}" th:field="*{siglasGenero}"
+                       th:value="${genero.key}"
+                       th:checked="${genero.key == siglasGenero}" onclick="deseleccionarRadio(this)"/>
+                <span th:text="${genero.value}"/>
+            </th:block>
+        </label>
+        <br/>
+        <label class="negrita">
+            <th:block th:each="estado: ${listaEstadoOrdenada}">
+                <span th:text="${estado.value}"/>
+                <input type="checkbox" name="estados" th:id="${estado.value}" th:field="*{estado}"
+                       th:value="${estado.key}"
+                       th:checked="${estados != null} and ${#lists.contains(estados, estado.key)}"/>
+            </th:block>
+        </label>
+        <br/>
+        <label>
+            <span class="negrita" th:text="#{formPersonales.etiqueta.nacionalidades}"/>
+            <select name="nacionalidades" id="nacionalidades" size="4" multiple="multiple">
+                <th:block th:each="nacionalidad: ${listaNacionalidadesOrdenada}">
+                    <option th:field="*{nacionalidades}" th:value="${nacionalidad.value}"
+                            th:selected="${nacionalidades != null} and ${#lists.contains(nacionalidades, nacionalidad.key)}"/>
+                    <span th:text="${nacionalidad.value}"/>
+                </th:block>
+            </select>
+        </label>
+        <br/>
+        <input type="submit" th:value="#{formPersonales.boton.enviar}"/>
+    </fieldset>
+</form>
+</body>
+</html>

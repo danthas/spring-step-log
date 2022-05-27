@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:utext="#{formRegistro.title}"></title>
+    <link rel="icon" href="data:,"/>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}"/>
+    <script th:src="@{/js/funciones.js}"></script>
+</head>
+<body>
+<div th:replace="fragments/cabecera :: header"></div>
+<form id="bancarios" th:object="${usuario}" th:action="@{/registro/bancarios}" method="post">
+    <fieldset class="cuadrado">
+        <legend class="negrita" th:text="#{formBancarios.leyenda}"/>
+        <label>
+            <span class="negrita" th:text="#{formBancarios.etiqueta.cuenta}"/>
+            <input type="text" name="cuenta" id="cuenta" th:field="*{cuenta}"/>
+        </label>
+        <br/>
+        <input type="submit" th:value="#{formBancarios.boton.enviar}"/>
+    </fieldset>
+</form>
+</body>
+</html>

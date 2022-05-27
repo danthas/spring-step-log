@@ -1,0 +1,16 @@
+.rojo {
+	color:red;
+}
+.negrita {
+	font-weight: bold;
+}
+.imagen {
+   width: 50px;
+   height: 50px;
+}
+.desactivado {
+    filter: opacity(40%);
+}
+.cuadrado {
+    width: 40%;
+}

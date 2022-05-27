@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:utext="#{formRegistro.title}"></title>
+    <link rel="icon" href="data:,"/>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}"/>
+    <script th:src="@{/js/funciones.js}"></script>
+</head>
+<body>
+<div th:replace="fragments/cabecera :: header"></div>
+<form id="resumen" th:action="@{/registro/resumen}" method="post">
+    <fieldset class="cuadrado" th:object="${usuario}">
+        <legend class="negrita" th:text="#{formPersonales.leyenda}"/>
+        <span th:text="#{formPersonales.etiqueta.nombre}"/>:
+        <span class="negrita" name="nombre" id="nombre" th:text="*{nombre}"/>
+        <br/>
+        <span th:text="#{formPersonales.etiqueta.apellidos}"/>:
+        <span class="negrita" name="apellidos" id="apellidos" th:text="*{apellidos}"/>
+        <br/>
+        <span th:text="#{formPersonales.etiqueta.fechaNac}"/>:
+        <span class="negrita" name="fechaNac" id="fechaNac" th:text="*{fechaNac}"/>
+        <br/>
+        <span th:text="#{formPersonales.etiqueta.nacionalidades}"/>:
+        <th:block th:each="nacionalidad : *{nacionalidades}">
+            <span class="negrita" th:text="${nacionalidad}"/>
+        </th:block>
+    </fieldset>
+    <fieldset class="cuadrado" th:object="${usuario}">
+        <legend class="negrita" th:text="#{formProfesionales.leyenda}"/>
+        <span th:text="#{formProfesionales.etiqueta.departamento}"/>:
+        <span class="negrita" name="departamentos" id="departamentos" th:text="*{departamentos}"/>
+        <br/>
+        <span th:text="#{formProfesionales.etiqueta.salario}"/>:
+        <span class="negrita" name="salario" id="salario" th:text="*{salario}"/>
+        <br/>
+        <span th:text="#{formProfesionales.etiqueta.comentarios}"/>:
+        <span class="negrita" name="comentarios" id="comentarios" th:text="*{comentarios}"/>
+    </fieldset>
+    <fieldset class="cuadrado" th:object="${usuario}">
+        <legend class="negrita" th:text="#{formBancarios.leyenda}"/>
+        <span th:text="#{formBancarios.etiqueta.cuenta}"/>:
+        <span class="negrita" name="cuenta" id="cuenta" th:text="*{cuenta}"/>
+    </fieldset>
+    <input type="submit" th:value="#{formResumen.boton.enviar}"/>
+</form>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<!--
+<div th:fragment="cabeceraImg1">
+    <a th:href="@{/registro/personales}"><img class="imagen" th:src="@{/img/Number-1-icon.png}"></a>
+    <a th:href="@{/registro/profesionales}"><img class="imagen desactivado" th:src="@{/img/Number-2-icon.png}"></a>
+    <a th:href="@{/registro/bancarios}"><img class="imagen desactivado" th:src="@{/img/Number-3-icon.png}"></a>
+    <a th:href="@{/registro/resumen}"><img class="imagen desactivado" th:src="@{/img/checkered-flag-icon.png}"></a>
+</div>
+<div th:fragment="cabeceraImg2">
+    <a th:href="@{/registro/personales}"><img class="imagen desactivado" th:src="@{/img/Number-1-icon.png}"></a>
+    <a th:href="@{/registro/profesionales}"><img class="imagen" th:src="@{/img/Number-2-icon.png}"></a>
+    <a th:href="@{/registro/bancarios}"><img class="imagen desactivado" th:src="@{/img/Number-3-icon.png}"></a>
+    <a th:href="@{/registro/resumen}"><img class="imagen desactivado" th:src="@{/img/checkered-flag-icon.png}"></a>
+</div>
+<div th:fragment="cabeceraImg3">
+    <a th:href="@{/registro/personales}"><img class="imagen desactivado" th:src="@{/img/Number-1-icon.png}"></a>
+    <a th:href="@{/registro/profesionales}"><img class="imagen desactivado" th:src="@{/img/Number-2-icon.png}"></a>
+    <a th:href="@{/registro/bancarios}"><img class="imagen" th:src="@{/img/Number-3-icon.png}"></a>
+    <a th:href="@{/registro/resumen}"><img class="imagen desactivado" th:src="@{/img/checkered-flag-icon.png}"></a>
+</div>
+<div th:fragment="cabeceraImg4">
+    <a th:href="@{/registro/personales}"><img class="imagen desactivado" th:src="@{/img/Number-1-icon.png}"></a>
+    <a th:href="@{/registro/profesionales}"><img class="imagen desactivado" th:src="@{/img/Number-2-icon.png}"></a>
+    <a th:href="@{/registro/bancarios}"><img class="imagen desactivado" th:src="@{/img/Number-3-icon.png}"></a>
+    <a th:href="@{/registro/resumen}"><img class="imagen" th:src="@{/img/checkered-flag-icon.png}"></a>
+</div>
+-->
+<header>
+    <th:block th:each="dato : ${listaNavegacion}">
+        <a style="text-decoration: none;" th:href="@{/registro/}+${dato.value[0]}">
+            <img th:src="@{/img/} + ${dato.value[1]}" th:title="${dato.value[2]}"
+                 width="40" height="40" th:style="${!dato.value[2].equals(#httpServletRequest.getServletPath())} ? 'opacity:0.4'" />
+        </a>
+    </th:block>
+</header>
+</body>
+</html>
+

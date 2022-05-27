@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:utext="#{formRegistro.title}"></title>
+    <link rel="icon" href="data:,"/>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}"/>
+    <script th:src="@{/js/funciones.js}"></script>
+</head>
+<body>
+<div th:replace="fragments/cabecera :: header"></div>
+<form id="profesionales" th:object="${usuario}" th:action="@{/registro/profesionales}" method="post">
+    <fieldset class="cuadrado">
+        <legend class="negrita" th:text="#{formProfesionales.leyenda}"/>
+        <label>
+            <span class="negrita" th:text="#{formProfesionales.etiqueta.departamento}"/>
+            <select name="departamentos" id="departamentos">
+                <th:block th:each="departamento: ${listaDepartamentoOrdenada}">
+                    <option th:field="*{departamentos}" th:value="${departamento.value}"
+                            th:selected="${departamentos != null} and ${#lists.contains(departamentos, departamento.key)}"/>
+                    <span th:text="${departamento.value}"/>
+                </th:block>
+            </select>
+        </label>
+        <br/>
+        <label>
+            <span class="negrita" th:text="#{formProfesionales.etiqueta.salario}"/>
+            <input type="text" name="salario" id="salario" th:field="*{salario}"/>
+        </label>
+        <br/>
+        <span class="negrita" th:text="#{formProfesionales.etiqueta.comentarios}"/>
+        <textarea name="comentarios" id="comentarios" th:field="*{comentarios}"></textarea>
+        <br/>
+        <input type="submit" th:value="#{formProfesionales.boton.enviar}"/>
+    </fieldset>
+</form>
+</body>
+</html>
